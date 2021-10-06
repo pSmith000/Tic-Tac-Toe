@@ -6,7 +6,7 @@ namespace Tic_Tac_Toe
 {
     class Game
     {
-        private bool _gameOver = false;
+        public static bool _gameOver = false;
         private Board _gameBoard;
 
         /// <summary>
@@ -22,7 +22,6 @@ namespace Tic_Tac_Toe
                 Update();
             }
 
-            End();
         }
 
         /// <summary>
@@ -57,6 +56,7 @@ namespace Tic_Tac_Toe
         private void End()
         {
             _gameBoard.End();
+
         }
 
         public static int GetInput()
