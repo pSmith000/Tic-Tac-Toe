@@ -48,12 +48,12 @@ namespace Tic_Tac_Toe
 
             if (CheckWinner(_currentToken))
             {
-                End();
+                RestartGame();
             }
             else if (_currentTurn == 9)
             {
                 Console.WriteLine("It's a tie!");
-                End();
+                RestartGame();
             }
             else
             {
@@ -83,6 +83,12 @@ namespace Tic_Tac_Toe
         /// </summary>
         public void End()
         {
+            
+            
+        }
+
+        public void RestartGame()
+        {
             Console.Write("Would you like to play again?\n1. Yes\n2. No\n> ");
 
             int choice = Game.GetInput();
@@ -97,7 +103,6 @@ namespace Tic_Tac_Toe
                 Game.ExitApplication();
 
             }
-            
         }
         /// <summary>
         /// Assigns the spot at a given indices in the board array to be the given token.
@@ -130,23 +135,26 @@ namespace Tic_Tac_Toe
         {
             Console.Clear();
             Draw();
-            if (_board[0,0] == token && _board[0,1] == token && _board[0,2] == token)
+
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
+                if (_board[0,i] == token && _board[1,i] == token && _board[2,i] == token)
+                {
+                    Console.WriteLine(token + " is the winner!");
+                    Console.ReadKey();
+                    return true;
+                }
+                    
             }
-            if (_board[1, 0] == token && _board[1, 1] == token && _board[1, 2] == token)
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
-            }
-            if (_board[2, 0] == token && _board[2, 1] == token && _board[2, 2] == token)
-            {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
+                if (_board[i, 0] == token && _board[i, 1] == token && _board[i, 2] == token)
+                {
+                    Console.WriteLine(token + " is the winner!");
+                    Console.ReadKey();
+                    return true;
+                }
+
             }
             if (_board[0, 0] == token && _board[1, 1] == token && _board[2, 2] == token)
             {
@@ -155,24 +163,6 @@ namespace Tic_Tac_Toe
                 return true;
             }
             if (_board[0, 2] == token && _board[1, 1] == token && _board[2, 0] == token)
-            {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
-            }
-            if (_board[0, 0] == token && _board[1, 0] == token && _board[2, 0] == token)
-            {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
-            }
-            if (_board[0, 1] == token && _board[1, 1] == token && _board[2, 1] == token)
-            {
-                Console.WriteLine(token + " is the winner!");
-                Console.ReadKey();
-                return true;
-            }
-            if (_board[0, 2] == token && _board[1, 2] == token && _board[2, 2] == token)
             {
                 Console.WriteLine(token + " is the winner!");
                 Console.ReadKey();
