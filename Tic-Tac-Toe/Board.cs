@@ -36,7 +36,7 @@ namespace Tic_Tac_Toe
 
             while (validOption == false)
             {
-                Console.WriteLine("Put the number of the spot where you want to go Player " + _currentToken);
+                Console.Write("Put the number of the spot where you want to go Player " + _currentToken + "!\n> ");
                 int choice = Game.GetInput() - 1;
 
                 if (choice > -1 && choice < 9 && SetToken(_currentToken, choice / 3, choice % 3))
@@ -94,7 +94,7 @@ namespace Tic_Tac_Toe
             }
             else
             {
-                Game._gameOver = true;
+                Game.ExitApplication();
 
             }
             

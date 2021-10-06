@@ -6,7 +6,8 @@ namespace Tic_Tac_Toe
 {
     class Game
     {
-        public static bool _gameOver = false;
+        private static bool _gameOver = false;
+        private static int _currentSceneIndex;
         private Board _gameBoard;
 
         /// <summary>
@@ -50,13 +51,18 @@ namespace Tic_Tac_Toe
             _gameBoard.Draw();
         }
 
+        public static void ExitApplication()
+        {
+            _gameOver = true;
+
+        }
+
         /// <summary>
         /// Called when the game ends
         /// </summary>
         private void End()
         {
             _gameBoard.End();
-
         }
 
         public static int GetInput()
