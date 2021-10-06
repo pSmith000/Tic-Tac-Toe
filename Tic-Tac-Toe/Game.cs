@@ -9,6 +9,7 @@ namespace Tic_Tac_Toe
         private static bool _gameOver = false;
         private static int _currentSceneIndex;
         private Board _gameBoard;
+        private static int _sceneCount = 2;
 
         /// <summary>
         /// Begins the game
@@ -23,6 +24,7 @@ namespace Tic_Tac_Toe
                 Update();
             }
 
+            End();
         }
 
         /// <summary>
@@ -39,7 +41,45 @@ namespace Tic_Tac_Toe
         /// </summary>
         private void Update()
         {
-            _gameBoard.Update();
+            switch (_currentSceneIndex)
+            {
+                case 0:
+                    _gameBoard.Update();
+                    break;
+                case 1:
+                    RestartGame();
+                    break;
+            }
+            
+        }
+        public void RestartGame()
+        {
+            Console.Write("Would you like to play again?\n1. Yes\n2. No\n> ");
+
+            int choice = Game.GetInput();
+
+            if (choice == 1)
+            {
+                _currentSceneIndex = 0;
+                _gameBoard.InitializeBoard();
+            }
+            else if (choice == 2)
+            {
+                ExitApplication();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Answer");
+            }
+        }
+
+        public static bool SetCurrentScene(int index)
+        {
+            if (index < 0 || index > _sceneCount)
+                return false;
+
+            _currentSceneIndex = index;
+            return true;
         }
 
         /// <summary>

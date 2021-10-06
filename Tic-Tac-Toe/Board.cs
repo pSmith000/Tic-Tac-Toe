@@ -48,12 +48,12 @@ namespace Tic_Tac_Toe
 
             if (CheckWinner(_currentToken))
             {
-                RestartGame();
+                Game.SetCurrentScene(1);
             }
             else if (_currentTurn == 9)
             {
                 Console.WriteLine("It's a tie!");
-                RestartGame();
+                Game.SetCurrentScene(1);
             }
             else
             {
@@ -83,27 +83,17 @@ namespace Tic_Tac_Toe
         /// </summary>
         public void End()
         {
-            
-            
+            Console.WriteLine("K.");
         }
 
-        public void RestartGame()
+        public void InitializeBoard()
         {
-            Console.Write("Would you like to play again?\n1. Yes\n2. No\n> ");
-
-            int choice = Game.GetInput();
-
-            if (choice == 1)
-            {
-                ClearBoard();
-                _currentTurn = 0;
-            }
-            else
-            {
-                Game.ExitApplication();
-
-            }
+            _player1Token = 'x';
+            _player2Token = 'o';
+            _currentToken = _player1Token;
+            _board = new char[3, 3] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
         }
+        
         /// <summary>
         /// Assigns the spot at a given indices in the board array to be the given token.
         /// </summary>
@@ -143,8 +133,7 @@ namespace Tic_Tac_Toe
                     Console.WriteLine(token + " is the winner!");
                     Console.ReadKey();
                     return true;
-                }
-                    
+                }                   
             }
             for (int i = 0; i < 3; i++)
             {
@@ -154,7 +143,6 @@ namespace Tic_Tac_Toe
                     Console.ReadKey();
                     return true;
                 }
-
             }
             if (_board[0, 0] == token && _board[1, 1] == token && _board[2, 2] == token)
             {
